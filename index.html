@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 | For My Sakshi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #ff4d79;
+            --secondary: #ff85a2;
+            --accent: #ffd1dc;
+            --dark: #0f050a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--dark); 
+            color: white; 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- MODERN ANIMATED BACKGROUND --- */
+        #heart-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #2e0a1a 0%, #050505 100%);
+            overflow: hidden;
+        }
+
+        .bg-heart {
+            position: absolute;
+            color: var(--primary);
+            filter: drop-shadow(0 0 5px var(--primary));
+            animation: move linear infinite;
+            user-select: none;
+        }
+
+        @keyframes move {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- LAYOUT & GLASS --- */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            opacity: 0; /* For scroll reveal */
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- TEXT STYLING --- */
+        h1 { 
+            font-size: clamp(3rem, 10vw, 6rem); 
+            margin-bottom: 10px; 
+            background: linear-gradient(45deg, #ff3366, #ffacbc); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        h2 { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            color: var(--secondary); 
+            margin-bottom: 25px; 
+        }
+
+        p { 
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2rem; 
+            line-height: 1.8; 
+            color: #e0e0e0; 
+            max-width: 750px; 
+            margin: 0 auto; 
+        }
+
+        /* --- POLAROID GALLERY --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 12px 12px 40px 12px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        /* Random rotation for that "scrapbook" look */
+        .photo-card:nth-child(odd) { transform: rotate(-2deg); }
+        .photo-card:nth-child(even) { transform: rotate(2deg); }
+
+        .photo-card:hover {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 10;
+        }
+
+        .photo-card img {
+            width: 100%; 
+            height: 300px; 
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .photo-label {
+            font-family: 'Dancing Script', cursive;
+            color: #333;
+            font-size: 1.4rem;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        /* --- REASONS LIST --- */
+        .reasons {
+            text-align: left;
+            margin-top: 40px;
+            display: inline-block;
+        }
+
+        .reason-item {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.2rem;
+            font-family: 'Quicksand', sans-serif;
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .heart-icon { 
+            color: var(--primary); 
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 5px var(--primary));
+        }
+
+        /* --- CTA BUTTON --- */
+        .btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 18px 50px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.4);
+            transition: 0.4s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover { 
+            transform: scale(1.1) translateY(-3px); 
+            box-shadow: 0 15px 40px rgba(255, 51, 102, 0.6);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-family: 'Quicksand', sans-serif;
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="heart-bg"></div>
+
+    <section class="visible">
+        <div class="container">
+            <div class="glass-panel">
+                <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 20px; color: var(--secondary);">To the girl who owns my heart</p>
+                <h1>Sakshi</h1>
+                <h2 id="year">Happy New Year 2026</h2>
+                <p>A new year is just another 365 days to love you more than I did the year before. Let's make this one unforgettable, together.</p>
+                <a href="#memories" class="btn">Scroll for a Surprise ✨</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="memories">
+        <div class="container">
+            <h2 style="color: white; font-family: 'Plus Jakarta Sans'; font-size: 3rem;">My Princess 💗👑</h2>
+            <div class="gallery">
+                <div class="photo-card">
+                    <img src="https://i.ibb.co/Rk3VyhzM/Picsart-25-12-25-16-40-51-222.jpg" alt="Memory 1">
+                    <div class="photo-label">Pretty Girl...🥰💖</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://i.ibb.co/TxgWG3t2/Picsart-25-12-25-16-46-03-369.jpg" alt="Memory 2">
+                    <div class="photo-label">Your beautiful smile...💗🫠</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://i.ibb.co/Vp5mWvYt/Picsart-25-12-25-16-36-12-344.jpg" alt="Memory 3">
+                    <div class="photo-label">Your Eyes..👀💗🫠</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://i.ibb.co/8DGNWwPD/Picsart-25-12-25-16-43-41-588.jpg" alt="Memory 4">
+                    <div class="photo-label">My Queen...🤗💖👑</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://i.ibb.co/7NbsF1wS/Picsart-25-12-25-17-50-05-178.jpg" alt="Memory 5">
+                    <div class="photo-label">💖💖💗💗🥰</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://i.ibb.co/kbRthrC/Picsart-25-12-25-16-46-59-328.jpg" alt="Memory 6">
+                    <div class="photo-label">Your dearest hubby...😅😍</div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <section>
+        <div class="container">
+            <div class="glass-panel">
+                <h2>Why it's always you...</h2>
+                <div class="reasons">
+                    <div class="reason-item" style="animation-delay: 0.1s;"><span class="heart-icon">❤</span> The way you laugh at the smallest things.</div>
+                    <div class="reason-item" style="animation-delay: 0.2s;"><span class="heart-icon">❤</span> How you make me feel happy every time.</div>
+                    <div class="reason-item" style="animation-delay: 0.3s;"><span class="heart-icon">❤</span> Your kindness, your love, and your soul.</div>
+                    <div class="reason-item" style="animation-delay: 0.4s;"><span class="heart-icon">❤</span> I'm so happy that you came into my life.</div>
+                    <div class="reason-item" style="animation-delay: 0.5s;"><span class="heart-icon">❤</span> Because you are Sakshi, and that's enough.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="glass-panel">
+                <h2>The simple truth...</h2>
+                <div class="reasons">
+                    <div class="reason-item"><span class="heart-icon">🌸</span> Every time I look at you, I fall in love even more.</div>
+                    <div class="reason-item"><span class="heart-icon">🌸</span> Kuch chehre humesha muskurate hue acche lagte, unme se ek tumhara hai.</div>
+                    <div class="reason-item"><span class="heart-icon">🌸</span> Jab bhi tumhare sath hota hu to lagta hai mene apni duniya jeet li.</div>
+                    <div class="reason-item"><span class="heart-icon">🌸</span> Main chahta hu tum mere sath har janam mein raho.</div>
+                    <div class="reason-item"><span class="heart-icon">🌸</span> Last but not least: I love you forever. 💗</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h1>My Promise</h1>
+            <p style="font-size: 1.4rem;">In 2026, I promise to be your biggest supporter, your best friend, and the one who never stops trying to win your heart every single day.</p>
+            <br>
+            <h2 style="font-size: 4.5rem; margin-top: 20px;">I Love You, Sakshi.</h2>
+        </div> 
+    </section>
+
+    <footer>
+        ©️ Made with Love by Ishan 💕
+    </footer>
+
+    <script>
+        // Create Enhanced Heart Background
+        const bg = document.getElementById('heart-bg');
+        const heartCount = 40;
+        const symbols = ['❤', '💖', '✨', '🌸'];
+
+        for (let i = 0; i < heartCount; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'bg-heart';
+            heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 8 + 7) + 's';
+            heart.style.animationDelay = Math.random() * 10 + 's';
+            bg.appendChild(heart);
+        }
+
+        // Scroll Reveal Logic
+        const observerOptions = { threshold: 0.2 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth Scroll for Button
+        document.querySelector('.btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector('#memories').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
